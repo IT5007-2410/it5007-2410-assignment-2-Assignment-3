@@ -3,10 +3,16 @@ const initialTravellers = [
   {
     id: 1, name: 'Jack', phone: 88885555,
     bookingTime: new Date(),
+    email: 'jk@gmail.com',
+    address: '123, Titanic St, NY',
+    nationality: 'UK',
   },
   {
     id: 2, name: 'Rose', phone: 88884444,
     bookingTime: new Date(),
+    email: 'rs@gmail.com',
+    address: '123, Titanic St, NY',
+    nationality: 'UK',
   },
 ];
 
