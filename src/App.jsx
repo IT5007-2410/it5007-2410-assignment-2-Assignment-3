@@ -3,10 +3,16 @@ const initialTravellers = [
   {
     id: 1, name: 'Jack', phone: 88885555,
     bookingTime: new Date(),
+    email: 'jk@gmail.com',
+    address: '123, Titanic St, NY',
+    nationality: 'UK',
   },
   {
     id: 2, name: 'Rose', phone: 88884444,
     bookingTime: new Date(),
+    email: 'rs@gmail.com',
+    address: '123, Titanic St, NY',
+    nationality: 'UK',
   },
 ];
 
@@ -94,20 +100,39 @@ class Homepage extends React.Component {
 	return (
 	<div>
 		{/*Q2. Placeholder for Homepage code that shows free seats visually.*/}
+    <h2>Homepage - Visual Representation of Free Seats</h2>
+    <div>Total Free Seats: {this.props.totalFreeSeats}</div>
 	</div>);
 	}
 }
+
+class NavigationBar extends React.Component {
+  render() {
+    return (
+      <div>
+        <button onClick={() => this.props.setSelector(1)}>Homepage</button>
+        <button onClick={() => this.props.setSelector(2)}>Display Travellers</button>
+        <button onClick={() => this.props.setSelector(3)}>Add Traveller</button>
+        <button onClick={() => this.props.setSelector(4)}>Delete Traveller</button>
+      </div>
+    );
+  }
+}
+
+
 class TicketToRide extends React.Component {
   constructor() {
     super();
     this.state = { travellers: [], selector: 1};
     this.bookTraveller = this.bookTraveller.bind(this);
     this.deleteTraveller = this.deleteTraveller.bind(this);
+    this.setSelector = this.setSelector.bind(this);
   }
 
   setSelector(value)
   {
   	/*Q2. Function to set the value of component selector variable based on user's button click.*/
+    this.setState({selector: value});
   }
   componentDidMount() {
     this.loadData();
@@ -130,17 +155,22 @@ class TicketToRide extends React.Component {
     return (
       <div>
         <h1>Ticket To Ride</h1>
-	<div>
-	    {/*Q2. Code for Navigation bar. Use basic buttons to create a nav bar. Use states to manage selection.*/}
-	</div>
-	<div>
-		{/*Only one of the below four divisions is rendered based on the button clicked by the user.*/}
-		{/*Q2 and Q6. Code to call Instance that draws Homepage. Homepage shows Visual Representation of free seats.*/}
-		{/*Q3. Code to call component that Displays Travellers.*/}
-		
-		{/*Q4. Code to call the component that adds a traveller.*/}
-		{/*Q5. Code to call the component that deletes a traveller based on a given attribute.*/}
-	</div>
+      <div>
+          {/*Q2. Code for Navigation bar. Use basic buttons to create a nav bar. Use states to manage selection.*/
+          <NavigationBar setSelector={this.setSelector} />
+          }
+      </div>
+      <div>
+        {/*Only one of the below four divisions is rendered based on the button clicked by the user.*/}
+        {/*Q2 and Q6. Code to call Instance that draws Homepage. Homepage shows Visual Representation of free seats.*/
+        this.state.selector === 1 && <Homepage />
+        }
+        {/*Q3. Code to call component that Displays Travellers.*/
+        }
+        
+        {/*Q4. Code to call the component that adds a traveller.*/}
+        {/*Q5. Code to call the component that deletes a traveller based on a given attribute.*/}
+      </div>
       </div>
     );
   }
